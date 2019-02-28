@@ -12,7 +12,7 @@ RUN docker-php-ext-install bcmath
 RUN apk add imap-dev
 RUN docker-php-ext-install imap
 RUN docker-php-ext-install opcache
-COPY ../opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install pdo_mysql
 #RUN docker-php-ext-install pdo_pgsql
