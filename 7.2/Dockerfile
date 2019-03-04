@@ -3,10 +3,16 @@ FROM composer:latest as composer
 FROM php:7.2-fpm-alpine
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0" \
+ENV PHP_MAX_EXECUTION_TIME="30" \
+    PHP_POST_MAX_SIZE="8M" \
+    PHP_UPLOAD_MAX_FILESIZE="2M" \
+    PHP_DATE_TIMEZONE="America/New_York" \
+    PHP_OPCACHE_VALIDATE_TIMESTAMPS="0" \
     PHP_OPCACHE_MAX_ACCELERATED_FILES="10000" \
     PHP_OPCACHE_MEMORY_CONSUMPTION="192" \
     PHP_OPCACHE_MAX_WASTED_PERCENTAGE="10"
+
+COPY php.ini /usr/local/etc/php/php.ini
 
 RUN docker-php-ext-install bcmath
 RUN apk add imap-dev
