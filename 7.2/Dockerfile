@@ -27,4 +27,6 @@ RUN apk add libxml2-dev
 RUN docker-php-ext-install xml
 RUN apk add libzip-dev
 RUN docker-php-ext-install zip
+RUN apk add libpng-dev
+RUN docker-php-ext-install gd
 RUN apk add gnupg
